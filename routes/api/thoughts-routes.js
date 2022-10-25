@@ -108,8 +108,7 @@ router.delete("/:thoughtId/reactions/:reactionId", async (req, res) => {
     try {
         const dbThoughtData = await Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { reactions: { reactionId: req.params.reactionId } } },
-            { runValidators: true, new: true });
+            { $pull: { reactions: { reactionId: req.params.reactionId } } });
         if (!dbThoughtData) {
 
             return res.status(404).json({ message: "No thought with this Id." })
